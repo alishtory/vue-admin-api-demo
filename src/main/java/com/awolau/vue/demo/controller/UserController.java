@@ -21,6 +21,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @Slf4j
+@RequestMapping("/user")
 public class UserController {
 
     private static final String LOGIN_USER_KEY = "LOGIN_USER_KEY";
@@ -46,7 +47,7 @@ public class UserController {
         }
         List<String> pers = Arrays.asList("user.add", "user.update");
         if ("admin".equals(userName)){
-            pers.add("role.add");
+            pers = Arrays.asList("user.add", "user.update", "admin.table");
         }
         UserInfoResponse data = UserInfoResponse.builder().permissions(pers).build();
         return Result.success(data);
